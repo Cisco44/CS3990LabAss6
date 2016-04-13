@@ -1,0 +1,112 @@
+
+/* Francisco Da Costa
+Student ID: 5026516
+Lab Assignment 6 - Tree Branches Unlimited Forms PHP */
+
+
+.block
+{
+	border: 1px solid black;
+	border-left: 40px solid green;
+	margin: 1px 0px;
+	display: inline-block;
+	width: 90%;
+}
+
+.textblock
+{
+	display: inline-block;
+}
+
+.error
+{
+	
+}
+
+div.formCol
+{
+	display: inline-block;
+	width: 24%;
+}
+
+div.formCol > *
+{
+	display: inline-block;
+	width: 70%;
+}
+
+div.formRow
+{
+	display: block;
+}
+
+#creditBox
+{
+	width: 50%;
+	display: inline-block;
+}
+
+#Banner
+{
+	display: initial;
+	width: 50%;
+	float: left;
+	margin-left: 5px;
+}
+
+#Branch
+{
+	width: 10.35%;
+	height: 152px;
+	display: inline-block;
+	float: center;
+	
+}
+
+#errorPng
+{
+	width: 15px;
+	height: 15px;
+}
+
+#Bristlecone
+{
+	width: 25%;
+	float: right;
+}
+
+nav
+{
+	background-color: orange;
+	text-align: justify;
+	white-space: normal;
+	width: 90%;
+	margin-left: 5px;
+	border: 1px solid black;
+	display: inline-block;
+	float: left;
+	
+}
+
+#payments
+{
+	display: inline-block;
+	float: right;
+	width: 40%;
+}
+
+#subcan
+{
+	clear: right;
+}
+
+nav a
+{
+	padding: 10px;
+}
+
+p
+{
+	font-family: Georgia, serif;
+	font-weight: bold;
+}
