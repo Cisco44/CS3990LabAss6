@@ -1,5 +1,34 @@
-<!DOCTYPE HTML>
+<?php
+function testFill($form)
+{
+	if(empty($_POST[$form]))
+		return false;
+	else
+		return true;
+}
 
+function isFilled($formName)
+{
+	if(!testFill($formName))
+	{
+	?>
+		<img id="errorPng" src="milker-X-icon.png" alt="Error" draggable="false">
+	<?php
+	}
+}
+
+function cCardSelect($formName)
+{
+	if(isset($_POST["cCard"]) && $_POST["cCard"] == $formName)
+		print "checked";
+}
+
+function provSelect($prov)
+{
+	if(isset($_POST["prov"]) && $_POST["prov"] == $prov)
+		print "selected";
+}
+?>
 <!-- Francisco Da Costa
 Student ID: 5026516
 Lab Assignment 6 - Tree Branches Unlimited Forms PHP -->
@@ -42,18 +71,41 @@ Lab Assignment 6 - Tree Branches Unlimited Forms PHP -->
 			</noscript>
 			
 		</header>
-		
+
+<?php
+$valid = 1;
+if($_SERVER['REQUEST_METHOD'] == 'POST' and 
+testFill("sName") and testFill("gName") and testFill("add") and 
+testFill("city") and testFill("prov") and testFill("hPhone") and
+testFill("cPhone") and testFill("cCard") and testFill("cCNum")
+)
+{
+	if (isset($_POST["mailY"]))
+	{
+		if(testFill("email"))
+			$valid = 1;
+		else
+			$valid = 0;
+	}
+	else
+		$valid = 1;
+}
+else{
+	$valid = 0;
+}
+if($valid == 0){ ?>
+
 		<main>
+			
 			<form id="orderForm" action="OrderSubmit.php" method="post">
 				
 				<br/>
-				<h1> Tree Branches Order </h1>
+				<h1> Tree Branches Order <?php print $valid?></h1>
 				
 				<div class="formCol">
 					<p> Surname: </p>
 					<input type="textbox" name="sName" value="<?=$_POST["sName"]?>" />
 					<?php isFilled("sName");?>
-					
 				</div>
 				
 				<div class="formCol">
@@ -80,7 +132,7 @@ Lab Assignment 6 - Tree Branches Unlimited Forms PHP -->
 					<?php $prov = file("provInfo.txt", FILE_IGNORE_NEW_LINES)?>
 					<select name="prov" >
 						<?php for($i = 0; $i < count($prov); ++$i){ ?>
-						<option <?php provSelect($prov[$i]);?> > <?php echo $prov[$i];?> </option> <?php }?>
+						<option <?php provSelect($prov[$i]);?> > <?php echo $prov[$i];?></option> <?php }?>
 					</select>
 					<?php isFilled("prov");?>
 				</div>
@@ -210,50 +262,30 @@ Lab Assignment 6 - Tree Branches Unlimited Forms PHP -->
 				</div>
 				
 			</form>
-
 	</main>
-		
+	<?php } else {?>
+		<main>
+			<h1> Receipt </h1>
+			<ul>
+				<li> Surname: <?php print($_POST["sName"])?> </li>
+				<li> Given Name: <?php print($_POST["gName"])?> </li>
+				<li> Address: <?php print($_POST["add"])?> </li>
+				<li> City: <?php print($_POST["city"])?> </li>
+				<li> Province: <?php print($_POST["prov"])?> </li>
+				<li> Home Phone: <?php print($_POST["hPhone"])?> </li>
+				<li> Cell Phone: <?php print($_POST["cPhone"])?> </li>
+				<li> Email: <?php print($_POST["email"])?> </li>
+				<li> Credit Card Type: <?php print($_POST["cCard"])?> </li>
+				<li> Total Payment: <?php print($_POST["payments"])?> </li>
+			</ul>
+			<p> Thank you very much for you patronage!</p>
+		</main>
+	<?php }?>
 		<footer>
 		
 		</footer>
 		
 	</body>
-	
-<?php
 
-	function isFilled($formName)
-	{
-		if(empty($_POST[$formName]))
-		{
-		?>
-			<img id="errorPng" src="milker-X-icon.png" alt="Error" draggable="false">
-		<?php
-		}
-	}
 	
-	function cCardSelect($formName)
-	{
-		if(isset($_POST["cCard"]) && $_POST["cCard"] == $formName)
-			print "checked";
-	}
-	
-	function provSelect($prov)
-	{
-		if(isset($_POST["prov"]) && $_POST["prov"] == $prov)
-			print "selected";
-	}
-?>
-	
-	
-
-	<!--
-		<php
-		if(empty($_POST["sName"]))
-		{
-		?>
-			<img id="errorPng" src="milker-X-icon.png" alt="Error" draggable="false">
-		<php 
-		}
-		?>
-	-->
 </html>
